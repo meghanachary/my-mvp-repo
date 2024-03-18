@@ -4,57 +4,26 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
+// Not sure if this is the right file to do this. I am trying to access the healthTopics array of objects
+const topics = express();
+topics.use(express.json());
+const PORT = 4000;
+const topics = require("./data/sleepTopics.js");
+
 // localhost:4000/api/topics
 
+// This is the DB and table I created in SQL
 // DB name = favorites
 // TABLE name = topics
 
-// GET topics list
+// GET
 router.get("/", async function (req, res, next) {
-  try {
-    let results = await db("SELECT * FROM topics;");
-    res.send(results.data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+  res.send({ message: "Hello! Try /sleepTopics" });
 });
 
-// GET topic by keyword
-router.get("/:keyword", async function (req, res, next) {
-  const { keyword } = req.params;
-  try {
-    const results = await db(
-      `SELECT * FROM topics WHERE keyword = ${keyword};`
-    );
-    if (!results.data.length) {
-      res.status(404).send({
-        message: "Topic not found",
-        error: true,
-      });
-    } else {
-      res.send(results.data[0]);
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
+// GET all topics
+topics.get("/sleepTopics", function (req, res) {
+  res.send(data);
 });
 
-// GET topic by id
-router.get("/:topicId", async function (req, res, next) {
-  const { topicId } = req.params;
-  try {
-    const results = await db(
-      `SELECT * FROM topics WHERE topicId = ${topicId};`
-    );
-    if (!results.data.length) {
-      res.status(404).send({
-        message: "ID not found",
-        error: true,
-      });
-    } else {
-      res.send(results.data[0]);
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+// GET sleep topic by ID
