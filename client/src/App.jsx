@@ -4,7 +4,7 @@ import "./App.css";
 
 // This code is heavily inspired by milestone 5 & open weather activity
 
-// The keyword getter and setter is specifically the user's input in the form. keyword is also one parameter in my external API. currently keywords my app takes are "sleep", "stress" and "exercise"
+// The keyword getter and setter is specifically the user's input in the form. keyword is also one parameter in my external API. currently keywords my app takes are "sleep", "stress" and "exercise" but user could potentially type other health topics unrelated to sleep, if they want to.
 function App() {
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
@@ -97,7 +97,12 @@ function App() {
     <div className="App">
       <h1>Best Rest</h1>
       <h3>Your source for sleep tips from A to 💤</h3>
-      <img src="https://static-00.iconduck.com/assets.00/sloth-emoji-1986x2048-p4zkd650.png" />
+      <img
+        src="https://static-00.iconduck.com/assets.00/sloth-emoji-1986x2048-p4zkd650.png"
+        alt="A sloth emoji"
+        width="200"
+        height="400"
+      />
       <div className="search">
         <form onSubmit={handleSubmit} className="input-form">
           <label htmlFor="keyword" className="keyword-input">
@@ -125,42 +130,36 @@ function App() {
         {loading && <div className="Loader" />}
 
         {topic ? (
-          <div className="container">
+          <div className="topic-container">
             <div className="topic-info">
               <div className="topic-id">
                 <p>
                   {/*Need to test, and see if I can fetch the right info using the correct params from the health API */}
-                  {topic.Result.Resources.Resource.Id}
+                  {topic.Resources.Resource.Id}
                 </p>
               </div>
             </div>
             <div className="topic-title">
-              <p>{topic.Result.Resources.Resource.Title}°f</p>
+              <p>{topic.Resources.Resource.Title}</p>
             </div>
             <div className="topic-content">
               <h3>Here is some information about this topic:</h3>
-              <p>{topic.Result.Resources.Resource.Content}</p>
+              <p>
+                {
+                  topic.Resources.Resource.RelatedItems.RelatedItem.Sections
+                    .section.content
+                }
+              </p>
+            </div>
+            <div className="topic-image">
+              <h3>Image:</h3>
+              <p>{topic.Resources.Resource.ImageUrl}</p>
             </div>
           </div>
         ) : null}
       </div>
     </div>
   );
-  // return (
-  //   <>
-  //     <div className="App">
-  //       <h1>Best Rest</h1>
-  //       <h3>Offering sleep tips from A to ZZZ</h3>
-  //       <img src="https://static-00.iconduck.com/assets.00/sloth-emoji-1986x2048-p4zkd650.png" />
-  //       <form onSubmit={handleSubmit} className="input-form">
-  //         <label htmlFor="keyword" className="keyword-input">
-  //           Enter a topic here:{" "}
-  //         </label>
-  //         <input type="text" name="keyword" />
-  //       </form>
-  //     </div>
-  //   </>
-  // );
 }
 
 export default App;

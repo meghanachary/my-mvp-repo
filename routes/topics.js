@@ -4,11 +4,11 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-// Not sure if this is the right file to do this. I am trying to access the healthTopics array of objects
-const topics = express();
-topics.use(express.json());
-const PORT = 4000;
-const topics = require("./data/sleepTopics.js");
+// // Not sure if this is the right file to do this. I am trying to access the healthTopics array of objects
+// const topics = express();
+// topics.use(express.json());
+// const PORT = 4000;
+// const topics = require("./data/sleepTopics.js");
 
 // localhost:4000/api/topics
 
