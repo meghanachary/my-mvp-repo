@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const [topic, setTopic] = useState([]);
+  const [topics, setTopics] = useState([]);
   // const [favorites, setFavorites] = useState([]);
   // const [selectedTopic, setSelectedTopic] = useState(null);
   const [error, setError] = useState("");
@@ -44,14 +44,14 @@ function App() {
   // This is my second attempt, trying to fetch the data from the EXTERNAL api.
 
   // this is for the keyword user input. the user can type "sleep", "stress" or
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     setKeyword(e.target.value);
   };
 
   // activated when the form is submitted
   const handleSubmit = (e) => {
     e.preventDefault();
-    getTopic();
+    getTopics();
   };
 
   // Keeping this code here just in case. the .then version
@@ -67,7 +67,7 @@ function App() {
   // };
 
   //This one is based off of the Openweather activity
-  const getTopic = async () => {
+  const getTopics = async () => {
     try {
       setLoading(true);
       if (!keyword.trim()) {
@@ -83,11 +83,13 @@ function App() {
 
       const info = await res.json();
       console.log(info);
-      setTopic(info);
+      const topicsArray = info.Result.Resources.Resource;
+      setTopics(topicsArray);
+      console.log(topicsArray);
       setError(false);
     } catch (e) {
       setError(true);
-      setTopic(null);
+      setTopics(null);
     } finally {
       setLoading(false);
     }
@@ -95,7 +97,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Best Rest</h1>
+      <h2>🌃 Best Rest 😴</h2>
       <h3>Your source for sleep tips from A to 💤</h3>
       <img
         src="https://static-00.iconduck.com/assets.00/sloth-emoji-1986x2048-p4zkd650.png"
@@ -106,57 +108,70 @@ function App() {
       <div className="search">
         <form onSubmit={handleSubmit} className="input-form">
           <label htmlFor="keyword" className="keyword-input">
-            What are you looking for?{" "}
+            Enter a topic:{" "}
           </label>
           <input
             type="text"
             name="keyword"
             value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Enter your topic here"
+            // onChange={(e) => setKeyword(e.target.value)}
+            onChange={handleInputChange}
+            placeholder="ex: stress"
           />
           <div>
-            <button type="submit" onClick={getTopic} className="btn">
+            <button type="submit" onClick={getTopics} className="btn">
               Submit
             </button>
           </div>
         </form>
       </div>
-
-      {/* The code below will display if there's an error */}
+      {/* Code below will run if error is true */}
       <div>
         {error && <div className="error"> Please enter a valid topic. </div>}
-
-        {loading && <div className="Loader" />}
-
-        {topic ? (
-          <div className="topic-container">
-            <div className="topic-info">
-              <div className="topic-id">
-                <p>
-                  {/*Need to test, and see if I can fetch the right info using the correct params from the health API */}
-                  {topic.Resources.Resource.Id}
-                </p>
+      </div>
+      {loading && <div className="Loader" />}
+      {/* Not sure if this code below is the right way to do this. It is inspired by the Openweather activity code */}
+      <div className="topic-container">
+        {topics.length
+          ? topics.map((topic) => (
+              <div key={topic.Id}>
+                <div className="topic-info">
+                  <div className="topic-id">
+                    <h3>Topic ID: {topic.Id}</h3>
+                  </div>
+                </div>
+                <div className="topic-title">
+                  <h3>Topic title: {topic.Title}</h3>
+                </div>
+                <div className="topic-content">
+                  <h3>Here is some more information about this topic:</h3>
+                  <div>
+                    {topic.Sections.section.map((item, index) => (
+                      <div key={index}>
+                        <h3>Title: {item.Title}</h3>
+                        <p>Content: {item.Content}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="topic-image">
+                  <h3>Image:</h3>
+                  {/* <p>{topic.Resources.Resource.ImageUrl}</p> */}
+                </div>
               </div>
-            </div>
-            <div className="topic-title">
-              <p>{topic.Resources.Resource.Title}</p>
-            </div>
-            <div className="topic-content">
-              <h3>Here is some information about this topic:</h3>
-              <p>
-                {
-                  topic.Resources.Resource.RelatedItems.RelatedItem.Sections
-                    .section.content
-                }
-              </p>
-            </div>
-            <div className="topic-image">
-              <h3>Image:</h3>
-              <p>{topic.Resources.Resource.ImageUrl}</p>
-            </div>
+            ))
+          : null}
+      </div>
+      <div className="disclaimer">
+        <p className="disclaimer-tag">All health information provided by:</p>
+        <a href="https://health.gov/myhealthfinder" title="MyHealthfinder">
+          <div className="disclaimer-img">
+            <img
+              src="https://health.gov/themes/custom/healthfinder/images/MyHF.svg"
+              alt="MyHealthfinder"
+            />
           </div>
-        ) : null}
+        </a>
       </div>
     </div>
   );

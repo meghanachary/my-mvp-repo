@@ -6,8 +6,8 @@
 }
 * {
   box-sizing: border-box;
-  margin: 20;
-  padding: 20;
+  margin: 0px;
+  padding: 0px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: aliceblue;
 }
@@ -22,6 +22,7 @@ body {
   font-optical-sizing: auto;
   font-size: 30px;
   color: darkblue;
+  background-image: url(https://images.unsplash.com/photo-1559832939-26f880246f38?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 }
 
 h3 {
@@ -31,7 +32,6 @@ h3 {
 }
 
 p {
-  font-size: 25px;
   color: darkblue;
   opacity: 0.9;
 }
@@ -39,7 +39,7 @@ p {
 h1 {
   font-size: 100px;
   /* color: rgb(95, 185, 240); */
-  color: royalblue;
+  color: rgb(76, 113, 224);
   opacity: 0.88;
 }
 
@@ -49,15 +49,27 @@ h1 {
   color: royalblue;
 }
 
+/* .disclaimer {
+} */
+
+/* .disclaimer-img {
+} */
+
 .disclaimer-tag {
   color: rgb(142, 101, 244);
-  font-size: 8px;
+  font-size: 15px;
+  margin-top: 100px;
 }
 
 .title {
   color: rgb(58, 122, 241);
-  font-size: 50px;
+  font-size: 40px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.topic-container {
+  font-size: 15px;
+  display: flex;
+  gap: 10px;
 }
 
 .container {
@@ -68,23 +80,18 @@ h1 {
   text-align: center;
 }
 
-button {
-  /* color: royalblue;
-  font-size: large; */
-  background-color: rgb(23, 154, 219);
-  border-style: groove;
-  border-radius: 10px;
-  border-color: royalblue;
+.btn {
   color: white;
+  background-color: rgb(29, 175, 248);
+  font-size: 18px;
+  border-color: cornflowerblue;
   padding: 5px 10px;
   text-align: center;
-  display: inline-block;
-  font-size: 18px;
-  transition-duration: 0.4s;
 }
 
 button:hover {
-  background-color: rgb(29, 175, 248);
+  background-color: rgb(77, 194, 252);
+  color: white;
 }
 
 /* The loader code below is from Deb's Openweather activity example and is from W3schools.*/
@@ -106,4 +113,8 @@ button:hover {
   100% {
     transform: rotate(360deg);
   }
+}
+
+input {
+  margin: 15px;
 }
