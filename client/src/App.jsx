@@ -125,7 +125,7 @@ function App() {
           </div>
         </form>
       </div>
-      {/* Code below will run if error is true */}
+      {/* Error code below */}
       <div>
         {error && <div className="error"> Please enter a valid topic. </div>}
       </div>
@@ -149,7 +149,10 @@ function App() {
                     {topic.Sections.section.map((item, index) => (
                       <div key={index}>
                         <h3>Title: {item.Title}</h3>
-                        <p>Content: {item.Content}</p>
+                        {/* <div>Content: {item.Content}</div> */}
+                        <div
+                          dangerouslySetInnerHTML={{ __html: item.Content }}
+                        ></div>
                       </div>
                     ))}
                   </div>
@@ -164,7 +167,11 @@ function App() {
       </div>
       <div className="disclaimer">
         <p className="disclaimer-tag">All health information provided by:</p>
-        <a href="https://health.gov/myhealthfinder" title="MyHealthfinder">
+        <a
+          href="https://health.gov/myhealthfinder"
+          title="MyHealthfinder"
+          target="blank"
+        >
           <div className="disclaimer-img">
             <img
               src="https://health.gov/themes/custom/healthfinder/images/MyHF.svg"
@@ -173,6 +180,18 @@ function App() {
           </div>
         </a>
       </div>
+      {/* <footer>
+        <a
+          href="https://health.gov/myhealthfinder"
+          title="MyHealthfinder"
+          target="blank"
+        >
+          <img
+            src="https://health.gov/themes/custom/healthfinder/images/MyHF.svg"
+            alt="MyHealthfinder"
+          />
+        </a>
+      </footer> */}
     </div>
   );
 }
