@@ -159,7 +159,7 @@ function App() {
                 </div>
                 <div className="topic-image">
                   <h3>Image:</h3>
-                  {/* <p>{topic.Resources.Resource.ImageUrl}</p> */}
+                  <img src={topic.ImageUrl} />
                 </div>
               </div>
             ))
