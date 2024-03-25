@@ -148,7 +148,7 @@ function App() {
                   <div>
                     {topic.Sections.section.map((item, index) => (
                       <div key={index}>
-                        <h3>Title: {item.Title}</h3>
+                        <h3>{item.Title}</h3>
                         {/* <div>Content: {item.Content}</div> */}
                         <div
                           dangerouslySetInnerHTML={{ __html: item.Content }}
