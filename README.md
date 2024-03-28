@@ -34,10 +34,13 @@
 
 - 5. The database has been populated with topics under the keyword "stress".
 
-| Syntax    | Description |
-| --------- | ----------- |
-| Header    | Title       |
-| Paragraph | Text        |
+- This is the structure of the table, called "topics".
+
+| Field         | Type         | Null | Key | Default | Extra          |
+| ------------- | ------------ | ---- | --- | ------- | -------------- |
+| id            | int          | NO   | PRI |         | auto_increment |
+| topic         | varchar(40)  | NO   |     |         |                |
+| topic_summary | varchar(500) | YES  |     |         |                |
 
 ### Development
 
