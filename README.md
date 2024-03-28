@@ -5,8 +5,8 @@
 
 ## Current Bugs
 
-- When the user's input does not exist in the API, the page becomes blank. An error message would be ideal when this happens. ❌
-- When the user enters white space and clicks submit, nothing changes. ❌
+- When the user types a topic that does not exist in the API, the page becomes blank. I would like to put an error message when this happens. ❌
+- When the user enters white space and clicks submit, nothing changes. I would like a message asking the user, 'please type a topic' when this happens. ❌
 
 ## Setup
 
@@ -30,4 +30,4 @@
   DB_PASS=YOURPASSWORD
 ```
 
-- 4. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create a table called 'favorites' in the database.
+- 4. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create a table called 'topics' in the database.
