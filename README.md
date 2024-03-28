@@ -34,6 +34,11 @@
 
 - 5. The database has been populated with topics under the keyword "stress".
 
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
+
 ### Development
 
 - 1. Run `npm start` in project directory to start the Express server on port 4000
