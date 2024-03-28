@@ -31,3 +31,11 @@
 ```
 
 - 4. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create a table called 'topics' in the database.
+
+- 5. The database has been populated with topics under the keyword "stress".
+
+### Development
+
+- 1. Run `npm start` in project directory to start the Express server on port 4000
+
+- 2. In another terminal, run `cd client` and run `npm run dev` to start the client in development mode with hot reloading in port 5173.
