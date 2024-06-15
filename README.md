@@ -3,11 +3,6 @@
 - 🦥🌃💤
 - Welcome to Best Rest, a source of information for anyone looking for tips on how to improve their sleep!
 
-## Current Bugs
-
-- When the user types a topic that does not exist in the API, the page becomes blank. I would like to put an error message when this happens. ❌
-- When the user enters white space and clicks submit, nothing changes. I would like a message asking the user, 'please type a topic' when this happens. ❌
-
 ## Setup
 
 ### Dependencies
